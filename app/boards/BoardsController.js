@@ -8,16 +8,33 @@
     BoardsController.$inject = ['pivotTrakerService'];
 
     function BoardsController(pivotTrakerService) {
-        var vm = this;
+        var vm = this,
+            data;
 
-        vm.getProfile = getProfile();
-        vm.title = 'Avengers';
+        // interface
+        vm.title = '';
+        vm.email = '';
+
+        // controller logic
+        init();
+
+        function init() {
+            return getProfile();
+        }
 
         function getProfile() {
-            return pivotTrakerService.getProfile(function(data) {
-                console.log(data.email);
-                vm.title = data.email;
-            });
+            return pivotTrakerService.getProfile()
+                .then(function(data) {
+                    console.log(data);
+                    vm.title = data.data.name;
+                });
+        }
+
+        function getProject() {
+            return pivotTrakerService.getProject()
+                .then(function(data) {
+                    vm.title = data.data.name;
+                });
         }
     }
 })();

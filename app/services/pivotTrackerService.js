@@ -9,28 +9,31 @@
 
     function pivotTrakerService($http, $resource) {
         var service,
-            projectId;
+            projectId,
+            config = { headers: { 'X-TrackerToken': '12781ca3a1548f8ebf844800fface44a' } };
 
         service = {
-            getProfile: getProfile
+            getProfile: getProfile,
+            getProject: getProject
         };
 
         return service;
 
-        function getProfile(callback) {
-            var endPoint = 'https://www.pivotaltracker.com/services/v5/me',
-                api;
-
-            api = $resource(endPoint, {}, {
-                get: {
-                    method: 'GET',
-                    headers: {'X-TrackerToken': '12781ca3a1548f8ebf844800fface44a'}
-                }
-            });
-
-            api.get(function(response) {
-                callback(response);
-            });
+        function getProfile() {
+            return $http.get('https://www.pivotaltracker.com/services/v5/me', config)
+                .then(function (data) {
+                    projectId = data.data.projects[0].id;
+                    return data;
+                });
         }
+
+        function getProject() {
+            return $http.get('https://www.pivotaltracker.com/services/v5/projects/' + projectId, config)
+                .then(function (data) {
+                    return data;
+                });
+        }
+
+
     }
 })();

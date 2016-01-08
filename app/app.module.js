@@ -1,21 +1,15 @@
 (function () {
     'use strict';
 
-    angular.module('app', [
-        // angular modules
-        'ngRoute',
+    angular
+        .module('app', ['ngRoute', 'ngResource'])
+        .config(routeConfig);
 
-        // common modules
-        'app.core',
+    routeConfig.$inject = ['$routeProvider'];
 
-        // feature modules
-        'app.boards'
-    ])
-    .config(['$routeProvider', function($routeProvider) {
+    function routeConfig($routeProvider) {
         $routeProvider
-            .when('/pivot', {
-                templateUrl: 'app/boards/boards.html',
-            })
-            .otherwise({redirectTo: '/pivot'});
-    }]);
+            .when('/', { templateUrl: 'app/boards/boards.html', title: 'Boards' })
+            .otherwise({ redirectTo: '/' });
+    }
 })();

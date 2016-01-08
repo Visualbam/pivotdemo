@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js" lang="en" ng-app="app">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation | Welcome</title>
+    <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link href='http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <ul class="dropdown menu" data-dropdown-menu>
+                <li class="menu-text">Site Title</li>
+                <li class="has-submenu">
+                    <a href="#">One</a>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <li><a href="#">One</a></li>
+                        <li><a href="#">Two</a></li>
+                        <li><a href="#">Three</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Two</a></li>
+                <li><a href="#">Three</a></li>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <input type="search" placeholder="Search">
+                </li>
+                <li>
+                    <button type="button" class="button">Search</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-12 columns">
+            <div ng-view></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+
+    <script src="app/app.module.js"></script>
+    <script src="app/boards/boards.module.js"></script>
+    <script src="app/boards/boards.js"></script>
+
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/pivot.service.js"></script>
+
+    <script>
+        $(document).foundation();
+    </script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@
 
     angular
         .module('app.core')
-        .factory('dataservice', pivot);
+        .factory('pivot', pivot);
 
     /* @ngInject */
     function pivot() {

@@ -2,10 +2,20 @@
     'use strict';
 
     angular.module('app', [
-        /* common modules */
+        // angular modules
+        'ngRoute',
+
+        // common modules
         'app.core',
 
-        /* feature modules */
+        // feature modules
         'app.boards'
-    ]);
+    ])
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider
+            .when('/pivot', {
+                templateUrl: 'app/boards/boards.html',
+            })
+            .otherwise({redirectTo: '/pivot'});
+    }]);
 })();

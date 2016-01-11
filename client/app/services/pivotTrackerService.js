@@ -24,7 +24,7 @@
 
         service = {
             profile: $resource('https://www.pivotaltracker.com/services/v5/me', {}, actions),
-            stories: $resource('https://www.pivotaltracker.com/services/v5//projects/1509314/stories', {}, actions)
+            stories: $resource('https://www.pivotaltracker.com/services/v5/projects/1509314/stories', {}, actions)
         };
 
         return service;

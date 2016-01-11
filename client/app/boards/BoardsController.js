@@ -9,8 +9,6 @@
 
     function BoardsController(pivotTrakerService) {
         var vm = this,
-            data,
-            createBoard,
             backlog,
             working,
             done,

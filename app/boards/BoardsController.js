@@ -13,28 +13,14 @@
 
         // interface
         vm.title = '';
-        vm.email = '';
+        vm.stories = [];
 
-        // controller logic
-        init();
+        pivotTrakerService.profile.get(function (data) {
+            vm.title = data.email;
+        });
 
-        function init() {
-            return getProfile();
-        }
-
-        function getProfile() {
-            return pivotTrakerService.getProfile()
-                .then(function(data) {
-                    console.log(data);
-                    vm.title = data.data.name;
-                });
-        }
-
-        function getProject() {
-            return pivotTrakerService.getProject()
-                .then(function(data) {
-                    vm.title = data.data.name;
-                });
-        }
+        pivotTrakerService.stories.query(function (data) {
+            vm.stories = data;
+        });
     }
 })();

@@ -6,7 +6,10 @@
                 <h3>{{board.title}}</h3>
 
                 <div ng-repeat="story in board.stories">
-                    <p>{{story.name}}</p>
+                    <div ng-class="{{story.current_state}}">
+                        <span>{{story.current_state}}</span>
+                        <p>{{story.name}}</p>
+                    </div>
                 </div>
 
             </div>

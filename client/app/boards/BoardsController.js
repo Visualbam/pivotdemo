@@ -13,22 +13,21 @@
             createBoard,
             backlog,
             working,
-            done;
+            done,
+            Board;
 
         // interface
         vm.title = '';
         vm.boards = [];
 
-        createBoard = function (name) {
-            return {
-                title: name,
-                stories: []
-            };
+        Board = function (name) {
+            this.title = name;
+            this.stories = [];
         };
 
-        backlog = createBoard('backlog');
-        working = createBoard('working');
-        done = createBoard('done');
+        backlog = new Board('backlog');
+        working = new Board('working');
+        done = new Board('done');
 
         vm.boards.push(done, working, backlog);
 

@@ -1,0 +1,20 @@
+<div ng-controller="BoardsController as vm">
+    <div class="row">
+        <div data-ng-repeat="board in vm.boards">
+            <div class="small-4 columns">
+
+                <div class="board">
+                    <h3>{{board.title}}</h3>
+
+                    <div ng-repeat="story in board.stories">
+                        <div class="{{story.current_state}} story">
+                            <span>{{story.current_state}}</span>
+                            <p>{{story.name}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,11 +8,13 @@
         <li ng-repeat="story in board"
             class="{{story.current_state}} story"
             dnd-draggable="story"
-            dnd-moved="board.splice($index, 1)"
+            dnd-moved="board.stories.splice($index, 1)"
             dnd-effect-allowed="move"
             dnd-selected="models.selected = story"
-            dnd-dragEnd="updateStatus('{{story.id}}', event)">
-            
+            dnd-inserted="test(event, index, item, type)"
+            dnd-dragEnd="dropCallback(event, index, item, external, type, 'containerType')">
+            <!--dnd-dragEnd="getStoryId('{{story.id}}')">-->
+            <p>{{backlog.length}}</p>
             <span>{{story.current_state}}</span>
             <p>{{story.name}}</p>
         </li>

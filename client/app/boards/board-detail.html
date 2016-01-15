@@ -1,4 +1,5 @@
 <div class="board">
+    <h3>{{boardName}}</h3>
     <ul dnd-list="board">
         <!-- The dnd-draggable directive makes an element draggable and will
             transfer the object that was assigned to it. If an element was
@@ -7,9 +8,10 @@
         <li ng-repeat="story in board"
             class="{{story.current_state}} story"
             dnd-draggable="story"
-            dnd-moved="board.splice($index, 1); logEvent('Item moved', event)"
+            dnd-moved="board.splice($index, 1)"
             dnd-effect-allowed="move"
-            dnd-selected="models.selected = story">
+            dnd-selected="models.selected = story"
+            dnd-dragEnd="updateStatus('{{story.id}}', event)">
             
             <span>{{story.current_state}}</span>
             <p>{{story.name}}</p>

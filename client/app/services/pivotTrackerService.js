@@ -9,11 +9,9 @@
 
     function pivotTrakerService($http, $resource) {
         var service,
-            projectId,
             token = { 'X-TrackerToken': '12781ca3a1548f8ebf844800fface44a' },
-            profile,
             actions = {
-                get: { method: 'GET', headers: token },
+                get: { method: 'GET', headers: token, params: { id: '@id'} },
                 save: { method: 'POST', headers: token },
                 create: { method: 'POST', headers: token },
                 query: { method: 'GET', isArray: true, headers: token },
@@ -24,7 +22,8 @@
 
         service = {
             profile: $resource('https://www.pivotaltracker.com/services/v5/me', {}, actions),
-            stories: $resource('https://www.pivotaltracker.com/services/v5/projects/1509314/stories', {}, actions)
+            stories: $resource('https://www.pivotaltracker.com/services/v5/projects/1509314/stories', {}, actions),
+            story: $resource('https://www.pivotaltracker.com/services/v5/projects/1509314/stories/:id', {}, actions)
         };
 
         return service;

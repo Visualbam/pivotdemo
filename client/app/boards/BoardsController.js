@@ -8,25 +8,19 @@
     BoardsController.$inject = ['pivotTrakerService', '$scope'];
 
     function BoardsController(pivotTrakerService, $scope) {
-        // interface
-        $scope.title = '';
         $scope.models = {
             selected: null,
             boards: {
+                backlog: [],
                 working: [],
-                done: [],
-                backlog: []
+                done: []
             }
         };
 
-        $scope.logEvent = function(message, event) {
-            console.log(message, '(triggered by the following', event.type, 'event)');
+        $scope.updateStatus = function (storyId, event) {
+            var story = pivotTrakerService.story.get({ id: storyId });
             console.log(event);
         };
-
-        pivotTrakerService.profile.get(function (data) {
-            $scope.title = data.email;
-        });
 
         pivotTrakerService.stories.query(function (data) {
             angular.forEach(data, function (story) {

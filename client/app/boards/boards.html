@@ -1,20 +1,8 @@
-<div ng-controller="BoardsController as vm">
+<div data-ng-controller="BoardsController as vm">
     <div class="row">
-        <div data-ng-repeat="board in vm.boards">
-            <div class="small-4 columns">
-
-                <div class="board">
-                    <h3>{{board.title}}</h3>
-
-                    <ul dnd-list="list">
-                        <li ng-repeat="story in board.stories" class="{{story.current_state}} story">
-                            <span>{{story.current_state}}</span>
-                            <p>{{story.name}}</p>
-                        </li>
-                    </ul>
-                    
-                </div>
-
+        <div data-ng-repeat="(boardName, board) in vm.models.boards">
+            <div class="small-4 columns" data-ng-include="'app/boards/board-detail.html'">
+                <!-- Board Detail -->
             </div>
         </div>
     </div>

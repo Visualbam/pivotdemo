@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ngRoute', 'ngResource'])
+        .module('app', ['ngRoute', 'ngResource', 'dndLists'])
         .config(routeConfig);
 
     routeConfig.$inject = ['$routeProvider'];

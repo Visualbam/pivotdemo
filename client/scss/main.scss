@@ -1,9 +1,5 @@
-$md-red: #FF5722;
-$md-blue: #29B6F6;
-$md-cyan: #BBDEFB;
-$md-green: #4CAF50;
-$md-purple: #AB47BC;
-$md-orange: #FFC107;
+@import '_variables';
+@import '_boards';
 
 body {
     background: linear-gradient(0deg,  lighten($md-cyan, 12%) 0%, lighten($md-blue, 35%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -15,94 +11,8 @@ body {
     background-attachment: fixed;
 }
 
-.board {
-    background: lighten($md-blue, 40%);
-    padding: 1rem 1.5rem;
-    margin: 1rem 0;
-    box-shadow: 0px 3px 7px -1px rgba($md-blue, 0.45);
-
-    h3 {
-        color: $md-blue;
-        text-transform: uppercase;
-        font-weight: 900;
-        font-size: 1rem;
-    }
-}
-
 ul, ul li {
     padding: 0;
     margin: 0;
     list-style: none;
-} 
-
-.story {
-    border: 1px solid #efefef;
-    padding: 1rem 1rem 2rem;
-    margin: 1rem 0;
-    background: white;
-    box-shadow: 0px 3px 7px -1px rgba($md-blue, 0.45);
-    position: relative;
-
-    span {
-        color: white;
-        padding: 0.25rem 0.75rem;
-        display: inline-block;
-        width: auto;
-        border-radius: 50px;
-        font-weight: 900;
-        font-size: 0.65rem;
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        text-transform: uppercase;
-    }
-
-    &.unstarted {
-        display: block;
-        border-bottom: 5px solid $md-red;
-
-        span {
-            background: $md-red;
-        }
-    }
-
-    &.started {
-        border-bottom: 5px solid $md-blue;
-
-        span {
-            background: $md-blue;
-        }
-    }
-
-    &.finished {
-        border-bottom: 5px solid $md-green;
-
-        span {
-            background: $md-green;
-        }
-    }
-
-    &.rejected {
-        border-bottom: 5px solid $md-cyan;
-
-        span {
-            background: $md-cyan;
-        }
-    }
-
-    &.delivered {
-        border-bottom: 5px solid $md-orange;
-
-        span {
-            background: $md-orange;
-        }
-    }
-
-    &.accepted {
-        border-bottom: 5px solid $md-purple;
-
-        span {
-            background: $md-purple;
-        }
-    }
 }

@@ -5,14 +5,12 @@
         .module('app')
         .controller('BoardsController', BoardsController);
 
-    BoardsController.$inject = ['pivotTrakerService'];
+    BoardsController.$inject = ['pivotTrakerService', '$scope'];
 
-    function BoardsController(pivotTrakerService) {
-        var vm = this;;
-
+    function BoardsController(pivotTrakerService, $scope) {
         // interface
-        vm.title = '';
-        vm.models = {
+        $scope.title = '';
+        $scope.models = {
             selected: null,
             boards: {
                 working: [],
@@ -21,30 +19,29 @@
             }
         };
 
-        vm.sortStory = function () { 
-            console.log('hello tits');
-        }
+        $scope.logEvent = function(message, event) {
+            console.log(message, '(triggered by the following', event.type, 'event)');
+            console.log(event);
+        };
 
         pivotTrakerService.profile.get(function (data) {
-            vm.title = data.email;
+            $scope.title = data.email;
         });
 
         pivotTrakerService.stories.query(function (data) {
             angular.forEach(data, function (story) {
                 if (story.current_state === 'unstarted') {
-                    vm.models.boards.backlog.push(story);
+                    $scope.models.boards.backlog.push(story);
                 }
 
                 if (story.current_state === 'started' || story.current_state === 'finished' || story.current_state === 'delivered') {
-                    vm.models.boards.working.push(story);
+                    $scope.models.boards.working.push(story);
                 }
 
                 if (story.current_state === 'accepted') {
-                    vm.models.boards.done.push(story);
+                    $scope.models.boards.done.push(story);
                 }
             });
         });
-        
-        return vm;
     }
 })();

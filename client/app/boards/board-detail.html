@@ -7,7 +7,7 @@
         <li ng-repeat="story in board"
             class="{{story.current_state}} story"
             dnd-draggable="story"
-            dnd-moved="board.splice($index, 1)"
+            dnd-moved="board.splice($index, 1); logEvent('Item moved', event)"
             dnd-effect-allowed="move"
             dnd-selected="models.selected = story">
             

@@ -1,6 +1,6 @@
-<div data-ng-controller="BoardsController as vm">
+<div data-ng-controller="BoardsController">
     <div class="row">
-        <div data-ng-repeat="(boardName, board) in vm.models.boards">
+        <div data-ng-repeat="(boardName, board) in models.boards">
             <div class="small-4 columns" data-ng-include="'app/boards/board-detail.html'">
                 <!-- Board Detail -->
             </div>

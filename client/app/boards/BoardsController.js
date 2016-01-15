@@ -26,25 +26,31 @@
         $scope.getStoryId = function (id) {
             storyId = id;
         };
-        
-        // $scope.updateStatus = function () {
-        //     var story = pivotTrakerService.story.get({ id: storyId });
-        //     // save request
-        // };
-        
-        $scope.dropCallback = function(event, index, item, external, type, allowedType) {
-            console.log(index);
-            if (external) {
-                if (allowedType === 'itemType' && !item.label) return false;
-                if (allowedType === 'containerType' && !angular.isArray(item)) return false;
+
+        $scope.updateStory = function(event, index, item) {
+            var board = event.path[2].className;
+            var story = pivotTrakerService.story.get({ id: storyId });
+
+            if (board.indexOf('done') !== -1) {
+                story.current_state = 'accepted';
             }
+
+            if (board.indexOf('working') !== -1) {
+                story.current_state = 'started';
+            }
+
+            if (board.indexOf('backlog') !== -1) {
+                story.current_state = 'unstarted';
+            }
+
+            pivotTrakerService.story.update({ id: storyId }, { current_state: story.current_state }, function (result) {
+                story = result;
+            });
+
             return item;
         };
-       
-        $scope.$watchCollection('backlog', function(one, two, scope) {
-            console.log(one.length)
-        }, true);
 
+        // set initial data
         pivotTrakerService.stories.query(function (data) {
             angular.forEach(data, function (story) {
                 if (story.current_state === 'unstarted') {

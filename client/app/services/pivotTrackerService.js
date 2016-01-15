@@ -17,7 +17,7 @@
                 query: { method: 'GET', isArray: true, headers: token },
                 remove: { method: 'DELETE', headers: token },
                 delete: { method: 'DELETE', headers: token },
-                update: { method: 'PUT', headers: token }
+                update: { method: 'PUT', headers: token, params: { id: '@id'} }
             };
 
         service = {

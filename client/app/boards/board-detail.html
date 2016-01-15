@@ -1,6 +1,7 @@
-<div class="board">
+<div class="board {{boardName}}">
     <h3>{{boardName}}</h3>
-    <ul dnd-list="board">
+    <ul dnd-list="board"
+        dnd-drop="updateStory(event, index, item)">
         <!-- The dnd-draggable directive makes an element draggable and will
             transfer the object that was assigned to it. If an element was
             dragged away, you have to remove it from the original list
@@ -11,9 +12,7 @@
             dnd-moved="board.stories.splice($index, 1)"
             dnd-effect-allowed="move"
             dnd-selected="models.selected = story"
-            dnd-inserted="test(event, index, item, type)"
-            dnd-dragEnd="dropCallback(event, index, item, external, type, 'containerType')">
-            <!--dnd-dragEnd="getStoryId('{{story.id}}')">-->
+            dnd-dragStart="getStoryId('{{story.id}}')">
             <p>{{backlog.length}}</p>
             <span>{{story.current_state}}</span>
             <p>{{story.name}}</p>

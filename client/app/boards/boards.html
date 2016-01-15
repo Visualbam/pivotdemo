@@ -6,12 +6,13 @@
                 <div class="board">
                     <h3>{{board.title}}</h3>
 
-                    <div ng-repeat="story in board.stories">
-                        <div class="{{story.current_state}} story">
+                    <ul dnd-list="list">
+                        <li ng-repeat="story in board.stories" class="{{story.current_state}} story">
                             <span>{{story.current_state}}</span>
                             <p>{{story.name}}</p>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
+                    
                 </div>
 
             </div>

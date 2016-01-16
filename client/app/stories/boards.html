@@ -1,0 +1,24 @@
+<div data-ng-controller="StoriesController">
+    <div class="row">
+
+        <div data-ng-repeat="board in boards" class="medium-4 columns board {{board.title}}">
+            <h3>{{board.title}}</h3>
+            <ul dnd-list="stories"
+                dnd-inserted="updateStory(event, index, item)">
+
+                <li ng-repeat="story in stories | filterState: board.allowedStates"
+                    class="{{story.current_state}} story"
+                    dnd-draggable="story"
+                    dnd-effect-allowed="move"
+                    dnd-moved="stories.splice($index, 1)"
+                    dnd-dragStart="getStoryId(event, '{{story.id}}')">
+
+                    <span>{{story.current_state}}</span>
+                    <p>{{story.name}}</p>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</div>

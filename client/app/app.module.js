@@ -9,7 +9,7 @@
 
     function routeConfig($routeProvider) {
         $routeProvider
-            .when('/', { templateUrl: 'app/boards/boards.html', title: 'Boards' })
+            .when('/', { templateUrl: 'app/stories/boards.html', title: 'Boards' })
             .otherwise({ redirectTo: '/' });
     }
 })();

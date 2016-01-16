@@ -3,26 +3,26 @@
     padding: 1rem 1.5rem;
     margin: 1rem 0;
     box-shadow: 0px 3px 7px -1px rgba($md-blue, 0.45);
-    
-    ul[dnd-list], ul[dnd-list] > li { 
+
+    ul[dnd-list], ul[dnd-list] li {
         position: relative;
     }
-    
+
     ul[dnd-list] {
         min-height: 100px;
 
         li {
             position: relative;
         }
-        
+
         .dndPlaceholder {
             display: block;
             background-color: $md-blue;
             min-height: 100px;
         }
-        
-        &.dndDraggingSource {
-            display: none;
+
+        .dndDraggingSource {
+            display: none!important;
         }
     }
 

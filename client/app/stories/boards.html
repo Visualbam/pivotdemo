@@ -1,12 +1,12 @@
 <div data-ng-controller="StoriesController">
-    <div class="row">
+    <div class="row" data-equalizer>
 
-        <div data-ng-repeat="board in boards" class="medium-4 columns board {{board.title}}">
+        <div data-ng-repeat="board in boards" class="medium-4 columns board {{board.title}}" data-equalizer-watch>
             <h3>{{board.title}}</h3>
             <ul dnd-list="stories"
                 dnd-inserted="updateStory(event, index, item)">
 
-                <li ng-repeat="story in stories | filterState: board.allowedStates"
+                <li ng-repeat="story in stories | filterState: board.allowedStates | orderBy: board.$$hasKey:true"
                     class="{{story.current_state}} story"
                     dnd-draggable="story"
                     dnd-effect-allowed="move"

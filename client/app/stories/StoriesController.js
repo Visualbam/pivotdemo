@@ -9,7 +9,6 @@
 
     function StoriesController(pivotTrakerService, $scope, Board) {
         var storyId,
-            Story,
             backlog,
             working,
             done;
@@ -36,10 +35,17 @@
         };
 
         $scope.updateStory = function (event, index, item) {
-            var board = event.path[2].className;
+            var board = event.path[2].className,
+                Story;
 
             pivotTrakerService.story.get({ id: storyId }, function (result) {
                 Story = result;
+
+                $scope.stories.map(function (object, objectIndex) {
+                    if (object.id === Story.id) {
+                        $scope.stories.splice(objectIndex, 1);
+                    }
+                });
 
                 if (board.indexOf('Backlog') !== -1) {
                     Story.current_state = 'unstarted';

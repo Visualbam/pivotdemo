@@ -11,7 +11,15 @@
         $scope.stories = [];
 
         pivotTrakerService.stories.query(function (stories) {
-            $scope.stories = stories;
+            angular.forEach(stories, function (data) {
+                $scope.story = {
+                    id: data.id,
+                    name: data.name,
+                    current_state: data.current_state
+                }
+
+                $scope.stories.push($scope.story);
+            });
         });
 
         $scope.removeStoryNode = function (event, storyId) {
@@ -20,24 +28,22 @@
         };
 
         $scope.updateStory = function (event, index, item) {
-            var board = event.path[2].parentElement.className,
-                Story = pivotTrakerService.story.get({ id: item.id });
+            var board = event.path[2].parentElement.className;
 
             if (board.indexOf('Backlog') !== -1) {
-                Story.current_state = 'unstarted';
+                item.current_state = 'unstarted';
             }
 
             if (board.indexOf('Working') !== -1) {
-                Story.current_state = 'started';
+                item.current_state = 'started';
             }
 
             if (board.indexOf('Done') !== -1) {
-                Story.current_state = 'accepted';
+                item.current_state = 'accepted';
             }
 
-            pivotTrakerService.story.update({ id: item.id }, Story).$promise.then(function (response) {
-                $scope.stories.push(response);
-            });
+            pivotTrakerService.story.update({ id: item.id }, item);
+            $scope.stories.push(item);
         };
 
     }

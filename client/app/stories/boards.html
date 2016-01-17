@@ -10,7 +10,7 @@
                     <li data-ng-repeat="story in stories | filterState: board.allowedStates"
                         class="{{story.current_state}} story"
                         dnd-draggable="story"
-
+                        dnd-dragEnd="removeStoryNode(event, '{{story.id}}')"
                         dnd-moved="story.splice($index, 1)"
                         dnd-effect-allowed="move">
 

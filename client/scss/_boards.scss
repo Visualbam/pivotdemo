@@ -24,8 +24,9 @@
             box-shadow: 1px 3px 7px -1px rgba(0, 0, 0, 0.15);
             position: relative;
             border-radius: 8px;
-            border: 1px solid darken($color: $tundra, $amount: 5%);
+            border: 2px dashed darken($color: $tundra, $amount: 5%);
             min-height: 125px;
+            opacity: 0.75;
         }
 
         .dndDraggingSource {

@@ -1,4 +1,8 @@
 <div data-ng-controller="StoriesController">
+    <header class="main">
+        <h2>My board</h2>
+        <span>Company</span>
+    </header>
     <div class="row">
         <div ng-repeat="board in boards" class="medium-4 columns">
             <div class="board {{board.title}}">
@@ -10,7 +14,7 @@
                 <ul dnd-list="board.list"
                     dnd-drop="updateStory(event, index, item)">
 
-                    <li ng-repeat="story in board.list"
+                    <li ng-repeat="story in board.list | limitTo: 10"
                         dnd-draggable="story"
                         dnd-effect-allowed="move"
                         dnd-dragStart="board.list.splice($index, 1)"

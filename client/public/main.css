@@ -37,8 +37,9 @@
   box-shadow: 1px 3px 7px -1px rgba(0, 0, 0, 0.15);
   position: relative;
   border-radius: 8px;
-  border: 1px solid #e1e1e1;
+  border: 2px dashed #e1e1e1;
   min-height: 125px;
+  opacity: 0.75;
 }
 .board ul[dnd-list] .dndDraggingSource {
   display: none !important;
@@ -4229,7 +4230,17 @@ body {
   background-attachment: fixed;
 }
 body section {
-  padding: 4rem 0;
+  padding: 3rem 0;
+}
+body header.main h2 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+}
+body header.main span {
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #093650;
 }
 
 ul, ul li {

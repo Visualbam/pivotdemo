@@ -49,25 +49,25 @@
         // create boards array with generated boards
         $scope.boards.push($scope.backlog, $scope.working, $scope.done);
 
-        $scope.updateStory = function (event, index, item) {
+        $scope.updateStory = function (event, index, story) {
             var board = event.path[2].className;
 
             if (board.indexOf('Backlog') !== -1) {
-                item.current_state = 'unstarted';
-                $scope.backlog.list.push(item);
+                story.current_state = 'unstarted';
+                $scope.backlog.list.push(story);
             }
 
             if (board.indexOf('Working') !== -1) {
-                item.current_state = 'started';
-                $scope.working.list.push(item);
+                story.current_state = 'started';
+                $scope.working.list.push(story);
             }
 
             if (board.indexOf('Done') !== -1) {
-                item.current_state = 'accepted';
-                $scope.done.list.push(item);
+                story.current_state = 'accepted';
+                $scope.done.list.push(story);
             }
 
-            pivotTrakerService.story.update({ id: item.id }, item);
+            pivotTrakerService.story.update({ id: story.id }, story);
         };
     }
 })();

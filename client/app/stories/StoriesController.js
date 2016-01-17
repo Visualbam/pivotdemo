@@ -5,67 +5,40 @@
         .module('app')
         .controller('StoriesController', StoriesController);
 
-    StoriesController.$inject = ['pivotTrakerService', '$scope', 'Board'];
+    StoriesController.$inject = ['pivotTrakerService', '$scope'];
 
-    function StoriesController(pivotTrakerService, $scope, Board) {
-        var storyId,
-            backlog,
-            working,
-            done;
-
-        // properties
+    function StoriesController(pivotTrakerService, $scope) {
         $scope.stories = [];
-        $scope.boards = [];
 
-        // build boards
-        backlog = Board.build('Backlog', ['unstarted']);
-        working = Board.build('Working', ['started', 'finished', 'delivered', 'rejected']);
-        done = Board.build('Done', ['accepted']);
-
-        $scope.boards.push(backlog, working, done);
-
-        // handle stories
-        // set initial data
-        pivotTrakerService.stories.query(function (data) {
-            $scope.stories = data;
+        pivotTrakerService.stories.query(function (stories) {
+            $scope.stories = stories;
         });
 
-        $scope.getStoryId = function (event, id) {
-            storyId = id;
+        $scope.removeStoryNode = function (event, storyId) {
+            var element = event.srcElement;
+            element.parentNode.removeChild(element);
         };
 
         $scope.updateStory = function (event, index, item) {
-            var board = event.path[2].className,
-                Story;
+            var board = event.path[2].parentElement.className,
+                Story = pivotTrakerService.story.get({ id: item.id });
 
-            pivotTrakerService.story.get({ id: storyId }, function (result) {
-                Story = result;
+            if (board.indexOf('Backlog') !== -1) {
+                Story.current_state = 'unstarted';
+            }
 
-                $scope.stories.map(function (object, objectIndex) {
-                    if (object.id === Story.id) {
-                        $scope.stories.splice(objectIndex, 1);
-                    }
-                });
+            if (board.indexOf('Working') !== -1) {
+                Story.current_state = 'started';
+            }
 
-                if (board.indexOf('Backlog') !== -1) {
-                    Story.current_state = 'unstarted';
-                }
+            if (board.indexOf('Done') !== -1) {
+                Story.current_state = 'accepted';
+            }
 
-                if (board.indexOf('Working') !== -1) {
-                    Story.current_state = 'started';
-                }
-
-                if (board.indexOf('Done') !== -1) {
-                    Story.current_state = 'accepted';
-                }
-
-                pivotTrakerService.story.update({ id: storyId }, { current_state: Story.current_state }, function (result) {
-                    Story = result;
-                    $scope.stories.push(Story);
-                });
+            pivotTrakerService.story.update({ id: item.id }, Story).$promise.then(function (response) {
+                $scope.stories.push(response);
             });
-
-            return Story;
         };
+
     }
 })();

@@ -1,8 +1,9 @@
 .board {
-    background: lighten($md-blue, 40%);
-    padding: 1.5rem!important;
+    background: $tundra;
     margin: 1rem 0;
-    box-shadow: 0px 3px 7px -1px rgba($md-blue, 0.45);
+    border-radius: 8px;
+    padding-bottom: 0.25rem;
+    box-shadow: 1px 3px 7px -1px rgba(0, 0, 0, 0.45);
 
     ul[dnd-list], ul[dnd-list] li {
         position: relative;
@@ -17,8 +18,14 @@
 
         .dndPlaceholder {
             display: block;
-            background-color: $md-blue;
-            min-height: 100px;
+            padding: 1rem 1rem 2rem;
+            margin: 1rem;
+            background: white;
+            box-shadow: 1px 3px 7px -1px rgba(0, 0, 0, 0.15);
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid darken($color: $tundra, $amount: 5%);
+            min-height: 125px;
         }
 
         .dndDraggingSource {
@@ -26,24 +33,51 @@
         }
     }
 
-    h3 {
-        color: darken($md-blue, 25%);
-        text-transform: uppercase;
-        font-weight: 900;
-        font-size: 1rem;
-        text-align: center;
-        margin-bottom: 1.5rem;
+    header {
+        border-bottom: 1px solid darken($color: $tundra, $amount: 10%);
+        padding: 1rem 1.5rem;
+        margin-bottom: 2rem;
+        position: relative;
+
+        i {
+            position: absolute;
+            font-size: 1.25rem;
+            color: darken($tundra, 15%);
+
+            &.fa-ellipsis-v {
+                top: 33%;
+                left: 1.5rem;
+            }
+
+            &.fa-plus-circle {
+                top: 63%;
+                right: 1.5rem;
+                font-size: 2.5rem;
+                background: $tundra;
+                border-radius: 100%;
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        h3 {
+            color: darken($tundra, 45%);
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 15px;
+            margin: 0 0 0 1.5rem;
+        }
     }
 }
 
 .story {
-    border: 1px solid #efefef;
     padding: 1rem 1rem 2rem;
-    margin: 1.5rem 0;
+    margin: 1rem;
     background: white;
-    box-shadow: 0px 3px 7px -1px rgba($md-blue, 0.45);
+    box-shadow: 1px 3px 7px -1px rgba(0, 0, 0, 0.15);
     position: relative;
-    border-bottom: 1px solid #efefef;
+    border-radius: 8px;
+    border: 1px solid darken($color: $tundra, $amount: 5%);
 
     &:hover, &:active {
         cursor: move;
@@ -65,7 +99,7 @@
 
     &.unstarted {
         display: block;
-        border-bottom: 5px solid $md-red;
+        // border-bottom: 5px solid $md-red;
 
         span {
             background: $md-red;
@@ -73,7 +107,7 @@
     }
 
     &.started {
-        border-bottom: 5px solid $md-blue;
+        // border-bottom: 5px solid $md-blue;
 
         span {
             background: $md-blue;
@@ -81,7 +115,7 @@
     }
 
     &.finished {
-        border-bottom: 5px solid $md-green;
+        // border-bottom: 5px solid $md-green;
 
         span {
             background: $md-green;
@@ -89,7 +123,7 @@
     }
 
     &.rejected {
-        border-bottom: 5px solid $md-cyan;
+        // border-bottom: 5px solid $md-cyan;
 
         span {
             background: $md-cyan;
@@ -97,7 +131,7 @@
     }
 
     &.delivered {
-        border-bottom: 5px solid $md-orange;
+        // border-bottom: 5px solid $md-orange;
 
         span {
             background: $md-orange;
@@ -105,7 +139,7 @@
     }
 
     &.accepted {
-        border-bottom: 5px solid $md-purple;
+        // border-bottom: 5px solid $md-purple;
 
         span {
             background: $md-purple;

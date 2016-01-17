@@ -1,8 +1,8 @@
-@import '_variables';
-@import '_boards';
 @import '../../bower_components/foundation-sites/scss/foundation.scss';
-
-@import 'settings';
+@import '_variables';
+@import '_settings';
+@import '_topbar';
+@import '_boards';
 
 @include foundation-global-styles;
 @include foundation-grid;
@@ -42,12 +42,15 @@
 
 
 body {
-    background: linear-gradient(0deg,  lighten($md-cyan, 12%) 0%, lighten($md-blue, 35%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     height: 100%;
     margin: 0;
-    background: #deefff; /* Old browsers */
+    background: $ocean; /* Old browsers */
     background-repeat: no-repeat;
     background-attachment: fixed;
+
+    section {
+        padding: 4rem 0;
+    }
 }
 
 ul, ul li {
@@ -55,3 +58,5 @@ ul, ul li {
     margin: 0;
     list-style: none;
 }
+
+

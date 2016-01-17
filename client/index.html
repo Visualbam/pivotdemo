@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foundation | Welcome</title>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="./public/main.css">
 </head>
 
@@ -12,23 +13,28 @@
 
     <div class="top-bar">
         <div class="row">
-
             <div class="top-bar-left">
                 <ul class="dropdown menu" data-dropdown-menu>
-                    <li class="menu-text">Pivotal Tracker Demo Application</li>
+                    <li class="menu-text"><i class="fa fa-object-ungroup"></i>Pivotal Tracker Demo Application</li>
                 </ul>
             </div>
-
+            <div class="top-bar-right">
+                <ul class="menu">
+                    <li><a><i class="fa fa-bars"></i>Menu</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <br>
-
-    <div class="row">
-        <div class="medium-12 columns">
-            <div ng-view></div>
+    <section class="main">
+        <div class="row">
+            <div class="medium-12 columns">
+                <div ng-view></div>
+            </div>
         </div>
-    </div>
+    </section>
+
+
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/foundation-sites/dist/foundation.js"></script>

@@ -1,25 +1,20 @@
 <div data-ng-controller="BoardsController">
     <div class="row">
-        <div data-ng-repeat="board in boards" class="medium-4 columns board {{board.title}}">
+        <div ng-repeat="board in boards" class="medium-4 columns board {{board.title}}">
             <h3>{{board.title}}</h3>
+            <ul dnd-list="board.list"
+                dnd-drop="updateStory(event, index, item)">
 
-            <div data-ng-controller="StoriesController">
-                <ul dnd-list="stories"
-                    dnd-drop="updateStory(event, index, item, external, type)"
-                    dnd-inserted="">
-                    <li data-ng-repeat="story in stories | filterState: board.allowedStates"
-                        class="{{story.current_state}} story"
-                        dnd-draggable="story"
-                        dnd-dragEnd="removeStoryNode(event, '{{story.id}}')"
-                        dnd-moved="stories.splice($index, 1)"
-                        dnd-effect-allowed="move">
+                <li ng-repeat="story in board.list"
+                    dnd-draggable="story"
+                    dnd-effect-allowed="move"
+                    dnd-dragStart="board.list.splice($index, 1)"
+                    class="{{story.current_state}} story">
 
-                        <span>{{story.current_state}}</span>
-                        <p>{{story.name}}</p>
-                    </li>
-                </ul>
-            </div>
-
+                    <span>{{story.current_state}}</span>
+                    <p>{{story.name}}</p>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

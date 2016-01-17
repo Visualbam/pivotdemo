@@ -11,7 +11,8 @@
         this.build = function (title, allowedStates) {
             return {
                 title: title,
-                allowedStates: allowedStates
+                allowedStates: allowedStates,
+                list: []
             }
         };
     }

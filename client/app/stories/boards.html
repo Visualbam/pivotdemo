@@ -11,7 +11,7 @@
                         class="{{story.current_state}} story"
                         dnd-draggable="story"
                         dnd-dragEnd="removeStoryNode(event, '{{story.id}}')"
-                        dnd-moved="story.splice($index, 1)"
+                        dnd-moved="stories.splice($index, 1)"
                         dnd-effect-allowed="move">
 
                         <span>{{story.current_state}}</span>

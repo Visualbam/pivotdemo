@@ -31,7 +31,12 @@
                     $scope.backlog.list.push($scope.story);
                 }
 
-                else if (data.current_state === 'started' || data.current_state === 'finished' || data.current_state === 'delivered' || data.current_state === 'rejected') {
+                else if (
+                    data.current_state === 'started'   ||
+                    data.current_state === 'finished'  ||
+                    data.current_state === 'delivered' ||
+                    data.current_state === 'rejected'
+                ) {
                     $scope.working.list.push($scope.story);
                 }
 
